@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="523.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.LugarController">
+   <children>
+      <TabPane layoutX="-42.0" layoutY="-86.0" prefHeight="523.0" prefWidth="764.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Lugar">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="13.0" prefHeight="24.0" prefWidth="59.0" text="Buscador" />
+                        <TextField fx:id="lugarFilterField" layoutX="94.0" layoutY="11.0" />
+                        <TableView fx:id="lugarTable" layoutX="6.0" layoutY="53.0" prefHeight="275.0" prefWidth="577.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                          <columns>
+                            <TableColumn fx:id="lugarCodigo" editable="false" prefWidth="107.36097574234009" text="Cod.Parque" />
+                            <TableColumn fx:id="lugarNombre" editable="false" prefWidth="208.63562774658203" text="Nombre" />
+                              <TableColumn fx:id="lugarDireccion" editable="false" prefWidth="354.3643798828125" text="Direccion" />
+                              <TableColumn fx:id="lugarTlf" editable="false" prefWidth="94.63226318359375" text="Telefono" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="lugarNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevoLugar" text="Nuevo" />
+                        <Button fx:id="lugarBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarLugar" text="Borrar" textFill="#e70404" />
+                        <Button fx:id="lugarMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modLugar" text="Modificar" />
+                        <Button fx:id="refLugar" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Notificacion">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="notificacionTable" layoutY="53.0" prefHeight="275.0" prefWidth="577.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                           <columns>
+                              <TableColumn fx:id="notificacionCod" editable="false" prefWidth="120.0" text="Cod.Notificacion" />
+                              <TableColumn fx:id="notificacionUrgencia" editable="false" prefWidth="294.0862503051758" text="Urgencia" />
+                              <TableColumn fx:id="notificacionTipo" editable="false" prefWidth="105.91375732421875" text="Tipo" />
+                              <TableColumn fx:id="notificacionDireccion" editable="false" prefWidth="243.99319458007812" text="Direccion" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="13.0" prefHeight="24.0" prefWidth="59.0" text="Buscador" />
+                        <TextField fx:id="notificacionFilterField" layoutX="94.0" layoutY="11.0" />
+                        <Button fx:id="notificacionNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevaNotificacion" text="Nuevo" />
+                        <Button fx:id="notificacionBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarNotificacion" text="Borrar" textFill="#e70404" />
+                        <Button fx:id="notificacionMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modNotificacion" text="Modificar" />
+                        <Button fx:id="refNotificacion" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Empleados">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="empleadosTable" layoutY="53.0" prefHeight="275.0" prefWidth="577.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                           <columns>
+                              <TableColumn fx:id="empleadosDni" editable="false" prefWidth="88.0" text="DNI" />
+                              <TableColumn fx:id="empleadosNombre" editable="false" prefWidth="173.11922454833984" text="Nombre" />
+                              <TableColumn fx:id="empleadosApe" prefWidth="269.8807678222656" text="Apellidos" />
+                              <TableColumn fx:id="empleadosFechaNacimiento" editable="false" prefWidth="124.91259765625" text="Fecha Nacimiento" />
+                              <TableColumn fx:id="empleadosId" editable="false" prefWidth="110.2406005859375" text="Cod.Interno" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="13.0" prefHeight="24.0" prefWidth="59.0" text="Buscador" />
+                        <TextField fx:id="empleadosFilterField" layoutX="94.0" layoutY="11.0" />
+                        <Button fx:id="empleadosNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevoEmpleado" text="Nuevo" />
+                        <Button fx:id="empleadosBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarEmpleado" text="Borrar" textFill="#e70404" />
+                        <Button fx:id="empleadosMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modEmpleado" text="Modificar" />
+                        <Button fx:id="refEmpleado" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
