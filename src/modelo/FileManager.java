@@ -1,69 +1,92 @@
 package modelo;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import com.mysql.jdbc.PreparedStatement;
+public class FileManager implements AccesoDatos {
 
-public abstract class FileManager implements AccesoDatos {
+	private Connection connect;
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-
-	     String codInterno;
-	     String dni;
-	     String nombre;
-	     String apellido;
-	     String fecha;
-	     PreparedStatement ps = null;
-	     Connection con = null;
-	     ResultSet rs = null;
-
-	 try {
-
-	 BufferedReader br = new BufferedReader(new FileReader("datos.txt"));
-	 String username = "root";
-	        String pwd = "";
-	        String connurl = "jdbc:postgresql://localhost:5432/proteccioncivil";
-
-
-	        con = DriverManager.getConnection(connurl, username, pwd);
-	         Class.forName("org.postgresql.Driver");
-	String line = null;
-	while((line=br.readLine()) != null){
-	String tmp[]=line.split("+");
-	codInterno=tmp[0];
-	dni=tmp[1];
-	nombre=tmp[2];
-	apellido=tmp[3];
-	fecha=tmp[4];
-
-	    System.out.println(codInterno + "\t" + nombre + "\t" +apellido+ "\t" +fecha);
-	    String sql = "INSERT INTO empleado (codinterno,dni,nombre,apellido,fechanacimiento) values ('" + codInterno + "','" + dni + "','1','" + nombre+ "','" + apellido + "','" + fecha + "')";
-
-	    ps = (PreparedStatement) con.prepareStatement(sql);
-
-	        ps.executeUpdate();
-
+	@Override
+	public void addOne(String[] datos) {
+		// TODO Auto-generated method stub
 
 	}
 
+	@Override
+	public String[][] leeTodos() {
+		String[][] auxiliar = null;
 
-	 br.close();
-	 con.close();
-	            ps.close();
+		// SELECT * de lugares
+		return auxiliar;
+	}
 
+	public void muestraContenido(String archivo) throws FileNotFoundException, IOException {
+		String cadena;
+		FileReader f = new FileReader(archivo);
+		BufferedReader b = new BufferedReader(f);
+		while ((cadena = b.readLine()) != null) {
+			System.out.println(cadena);
 
-	 }   catch(IOException e){
-	     e.printStackTrace();
-	 }
+		}
+		b.close();
+	}
 
+	@Override
+	public void escribeTodos(String[][] listaDatos) {
+		
 
-	 }
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+		try {
+			fichero = new FileWriter("Datos/datos.txt");
+			pw = new PrintWriter(fichero);
 
-	
+			for (int i = 0; i < 10; i++)
+				pw.println("Linea " + i);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// Nuevamente aprovechamos el finally para
+				// asegurarnos que se cierra el fichero.
+				if (null != fichero)
+					fichero.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+public void escribeTodos() {
+		
+
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+		try {
+			fichero = new FileWriter("Datos/datos2.txt");
+			pw = new PrintWriter(fichero);
+
+			for (int i = 0; i < 10; i++)
+				pw.println("Linea " + i);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// Nuevamente aprovechamos el finally para
+				// asegurarnos que se cierra el fichero.
+				if (null != fichero)
+					fichero.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }
