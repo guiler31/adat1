@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -17,6 +18,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,6 +38,11 @@ public class LugarController implements Initializable {
 	private Main programaPrincipal;
 	private Modelo database;
 	private Connection connection;
+	private ObservableList<Empleado> masterData = FXCollections.observableArrayList();
+	private ObservableList<Lugar> masterData3 = FXCollections.observableArrayList();
+	private ObservableList<Notificacion> masterData2 = FXCollections.observableArrayList();
+
+
 	 
 	
 	
@@ -50,6 +60,8 @@ public class LugarController implements Initializable {
 	private TableColumn<Empleado, String> empleadosId;
 	@FXML
 	private TableColumn<Empleado, String> empleadosApe;
+	@FXML
+	private TableColumn<Empleado, String> empleadosCodParque;
 	
 	@FXML
 	private Button empleadosNuevo;
@@ -101,6 +113,23 @@ public class LugarController implements Initializable {
 	private Button refLugar;
 	@FXML
 	private Button refNotificacion;
+	
+	@FXML
+	private Button notificacionBorrarTodo;
+	
+	@FXML
+	private Button lugarBorrarTodo;
+	
+	@FXML
+	private Button empleadoBorrarTodo;
+	
+	private void estilos() {
+		Image clos = new Image(getClass().getResourceAsStream("refresh.png"));
+		refLugar.setGraphic(new ImageView(clos));
+		refNotificacion.setGraphic(new ImageView(clos));
+		refEmpleado.setGraphic(new ImageView(clos));
+	}
+	
 	
 	@FXML
 	private void nuevoEmpleado(ActionEvent ev) {
@@ -165,38 +194,97 @@ public class LugarController implements Initializable {
 	@FXML
 	private void modEmpleado() {
 		
+		
+		
+		
 	}
 	
 	@FXML
 	private void borrarEmpleado() {
+		database= new Modelo();
+		int inde= empleadosTable.getSelectionModel().getSelectedIndex();
+		Empleado em = empleadosTable.getSelectionModel().getSelectedItem();
+		masterData.remove(inde);
+		String EM= em.codInternoProperty().get();
+		try {
+			database.BorrarEmpleado(EM);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
+	@FXML
+	private void borrarTodoEmpleado() {
+		database= new Modelo();
+		masterData.clear();
+		database.BorrarTodoEmpleado();
+	}
+	
+	@FXML
+	private void borrarTodoLugar() {
+		database= new Modelo();
+		masterData3.clear();
+		database.BorrarTodoLugar();
+	}
+	
+	@FXML
+	private void borrarTodoNotificacion() {
+		database= new Modelo();
+		masterData2.clear();
+		database.BorrarTodoNotificacion();
+	}
 	
 
 	@FXML
 	private void modLugar() {
 		
+		
+		
+		
 	}
 	@FXML
 	private void borrarLugar() {
-		
+		database= new Modelo();
+		int inde= lugarTable.getSelectionModel().getSelectedIndex();
+		Lugar em = lugarTable.getSelectionModel().getSelectedItem();
+		masterData3.remove(inde);
+		String EM= em.codParqueProperty().get();
+		try {
+			database.BorrarLugar(EM);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	private void modNotificacion() {
 		
+		
+		
+		
 	}
 	@FXML
 	private void borrarNotificacion() {
-		
+		database= new Modelo();
+		int inde= notificacionTable.getSelectionModel().getSelectedIndex();
+		Notificacion em = notificacionTable.getSelectionModel().getSelectedItem();
+		masterData2.remove(inde);
+		String EM= em.codNotificacionProperty().get();
+		try {
+			database.BorrarNotificacion(EM);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
 	private void cargarLugar() {
 		database = new Modelo();
 
-		ObservableList<Lugar> masterData3 = FXCollections.observableArrayList();
 		masterData3 = database.getDatosLugar();
 		
 		lugarCodigo.setCellValueFactory(cellData -> cellData.getValue().codParqueProperty());
@@ -238,7 +326,6 @@ public class LugarController implements Initializable {
 	private void cargarNotificacion() {
 		database = new Modelo();
 
-		ObservableList<Notificacion> masterData2 = FXCollections.observableArrayList();
 		masterData2 = database.getDatosNotificacion();
 
 		notificacionCod.setCellValueFactory(cellData -> cellData.getValue().codNotificacionProperty());
@@ -280,8 +367,6 @@ public class LugarController implements Initializable {
 	@FXML
 	private void cargarEmpleado() {
 		database = new Modelo();
-		ObservableList<Empleado> masterData = FXCollections.observableArrayList();
-		masterData.clear();
 		masterData = database.getDatosEmpleado();
 
 		// 0. Initialize the columns.
@@ -290,6 +375,7 @@ public class LugarController implements Initializable {
 		empleadosFechaNacimiento.setCellValueFactory(cellData -> cellData.getValue().fechaNacimientoProperty());
 		empleadosId.setCellValueFactory(cellData -> cellData.getValue().codInternoProperty());
 		empleadosApe.setCellValueFactory(cellData -> cellData.getValue().apellidosProperty());
+		empleadosCodParque.setCellValueFactory(cellData -> cellData.getValue().codParqueProperty());
 
 		
 		// 1. Wrap the ObservableList in a FilteredList (initially display all data).
@@ -315,6 +401,8 @@ public class LugarController implements Initializable {
 				}else if (person.getfechaNacimiento().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true;
 				}else if (person.getApellidos().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}else if (person.getCodParque().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				}
 				return false; // Does not match.
@@ -356,6 +444,7 @@ public class LugarController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		estilos();
 		cargarTodo();
 	}
 	

@@ -9,13 +9,17 @@ public class Empleado {
 	private final StringProperty nombre;
 	private final StringProperty fechaNacimiento;
 	private final StringProperty apellidos;
+	private final StringProperty codParque;
 
-	public Empleado(String codInterno, String dni, String nombre, String apellidos, String fechaNacimiento) {
+
+	public Empleado(String codInterno, String dni, String nombre, String apellidos, String fechaNacimiento, String codParque) {
 		this.codInterno = new SimpleStringProperty(codInterno);
 		this.dni = new SimpleStringProperty(dni);
 		this.nombre = new SimpleStringProperty(nombre);
 		this.fechaNacimiento = new SimpleStringProperty(fechaNacimiento);
 		this.apellidos = new SimpleStringProperty(apellidos);
+		this.codParque = new SimpleStringProperty(codParque);
+
 
 	}
 
@@ -31,6 +35,20 @@ public class Empleado {
 		return codInterno;
 	}
 
+
+	public String getCodParque() {
+		return codParque.get();
+	}
+
+	public void setCodParque(String codParque) {
+		this.codParque.set(codParque);
+	}
+
+	public StringProperty codParqueProperty() {
+		return codParque;
+	}
+
+	
 	public String getDni() {
 		return dni.get();
 	}
@@ -82,7 +100,9 @@ public class Empleado {
 	@Override
 	public String toString() {
 		return "Empleado [codInterno=" + codInterno + ", dni=" + dni + ", nombre=" + nombre + ", fechaNacimiento="
-				+ fechaNacimiento + ", apellidos=" + apellidos + "]";
+				+ fechaNacimiento + ", apellidos=" + apellidos + ", codParque=" + codParque + "]";
 	}
+
+	
 
 }

@@ -30,7 +30,8 @@
                         <Button fx:id="lugarNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevoLugar" text="Nuevo" />
                         <Button fx:id="lugarBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarLugar" text="Borrar" textFill="#e70404" />
                         <Button fx:id="lugarMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modLugar" text="Modificar" />
-                        <Button fx:id="refLugar" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                        <Button fx:id="refLugar" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="" />
+                        <Button fx:id="lugarBorrarTodo" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarTodoLugar" text="Borrar Todo" textFill="#e70404" />
                      </children>
                   </AnchorPane>
             </content>
@@ -52,7 +53,8 @@
                         <Button fx:id="notificacionNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevaNotificacion" text="Nuevo" />
                         <Button fx:id="notificacionBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarNotificacion" text="Borrar" textFill="#e70404" />
                         <Button fx:id="notificacionMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modNotificacion" text="Modificar" />
-                        <Button fx:id="refNotificacion" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                        <Button fx:id="refNotificacion" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="" />
+                        <Button fx:id="notificacionBorrarTodo" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarTodoNotificacion" text="Borrar Todo" textFill="#e70404" />
                      </children>
                   </AnchorPane>
               </content>
@@ -65,9 +67,10 @@
                            <columns>
                               <TableColumn fx:id="empleadosDni" editable="false" prefWidth="88.0" text="DNI" />
                               <TableColumn fx:id="empleadosNombre" editable="false" prefWidth="173.11922454833984" text="Nombre" />
-                              <TableColumn fx:id="empleadosApe" prefWidth="269.8807678222656" text="Apellidos" />
-                              <TableColumn fx:id="empleadosFechaNacimiento" editable="false" prefWidth="124.91259765625" text="Fecha Nacimiento" />
-                              <TableColumn fx:id="empleadosId" editable="false" prefWidth="110.2406005859375" text="Cod.Interno" />
+                              <TableColumn fx:id="empleadosApe" prefWidth="71.0" text="Apellidos" />
+                              <TableColumn fx:id="empleadosFechaNacimiento" editable="false" minWidth="0.0" prefWidth="227.0" text="Fecha Nacimiento" />
+                              <TableColumn fx:id="empleadosId" editable="false" minWidth="0.0" prefWidth="118.0" text="Cod.Interno" />
+                              <TableColumn fx:id="empleadosCodParque" prefWidth="85.0" text="CodParque" />
                            </columns>
                         </TableView>
                         <Label layoutX="14.0" layoutY="13.0" prefHeight="24.0" prefWidth="59.0" text="Buscador" />
@@ -75,7 +78,8 @@
                         <Button fx:id="empleadosNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevoEmpleado" text="Nuevo" />
                         <Button fx:id="empleadosBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarEmpleado" text="Borrar" textFill="#e70404" />
                         <Button fx:id="empleadosMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modEmpleado" text="Modificar" />
-                        <Button fx:id="refEmpleado" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                        <Button fx:id="refEmpleado" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="" />
+                        <Button fx:id="empleadoBorrarTodo" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarTodoEmpleado" text="Borrar Todo" textFill="#e70404" />
                      </children>
                   </AnchorPane>
             </content>

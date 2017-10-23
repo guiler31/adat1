@@ -31,6 +31,8 @@ public class newEmpleadoController implements Initializable {
 	@FXML
 	private TextField txtfApellidos;
 	@FXML
+	private TextField txtfCodPark;
+	@FXML
 	private DatePicker fechaNac;
 	
 	private void estilos() {
@@ -41,8 +43,8 @@ public class newEmpleadoController implements Initializable {
 	@FXML
 	private void saveEmpleado(ActionEvent sv) throws ClassNotFoundException, SQLException {
 		empleado=new Modelo();		
-		String fecha = fechaNac.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-		empleado.registrarEmpleado(txtfDNI.getText(), txtfNombre.getText(), txtfApellidos.getText(), fecha);
+		String fecha = fechaNac.getValue().toString();
+		empleado.registrarEmpleado(txtfDNI.getText(), txtfNombre.getText(), txtfApellidos.getText(), fecha, txtfCodPark.getText() );
 		Stage stage = (Stage) empleadosCancel.getScene().getWindow();
 	    stage.close();
 	    

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="219.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.newEmpleadoController">
+<AnchorPane prefHeight="260.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.newEmpleadoController">
    <children>
       <TextField fx:id="txtfDNI" layoutX="163.0" layoutY="54.0" prefHeight="27.0" prefWidth="219.0" />
       <Label layoutX="55.0" layoutY="14.0" prefHeight="17.0" prefWidth="99.0" text="Empleado">
@@ -24,5 +24,7 @@
       <DatePicker fx:id="fechaNac" layoutX="163.0" layoutY="174.0" prefHeight="27.0" prefWidth="219.0" />
       <Button fx:id="empleadosSave" layoutX="306.0" layoutY="14.0" mnemonicParsing="false" onAction="#saveEmpleado" text="Guardar" />
       <Button fx:id="empleadosCancel" cancelButton="true" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancelEmpleado" prefHeight="27.0" prefWidth="32.0" textAlignment="CENTER" />
+      <Label layoutX="19.0" layoutY="218.0" text="Codigo Parque" />
+      <TextField fx:id="txtfCodPark" layoutX="163.0" layoutY="213.0" prefHeight="27.0" prefWidth="219.0" />
    </children>
 </AnchorPane>

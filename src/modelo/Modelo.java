@@ -33,7 +33,6 @@ public class Modelo {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager.getConnection(url,user,pwd);
-			System.out.println("Database connection enabled");
 			cargarDatosTablas();
 			
 		}
@@ -71,9 +70,9 @@ public class Modelo {
 		}
 	}
 	
-	public void registrarEmpleado( String dni, String nombre, String apellido, String fechanaciemiento){
+	public void registrarEmpleado( String dni, String nombre, String apellido, String fechanaciemiento, String codParque){
 		try {
-			String sql = "Insert into proteccioncivil.Empleado (`dni`,`nombre`,`apellido`,`fechanaciemiento`) values (?, ?, ?, ?)";
+			String sql = "Insert into proteccioncivil.Empleado (`dni`,`nombre`,`apellido`,`fechanaciemiento`,`codPark`) values (?, ?, ?, ?, ?)";
 		
 			//String sql2 = "Insert into proteccioncivil.asigna (`codinterno`,`codparque`) values (?, ?)";
 			
@@ -88,6 +87,8 @@ public class Modelo {
 			stmt.setString(2, nombre);
 			stmt.setString(3, apellido);
 			stmt.setString(4, fechanaciemiento);
+			stmt.setString(5, codParque);
+
 			
 			stmt.executeUpdate();
 			//stmt2.executeUpdate();
@@ -200,7 +201,7 @@ public class Modelo {
 	public  ObservableList<Empleado> getDatosEmpleado() {
 		masterDatas=FXCollections.observableArrayList();
 		for (int g = 0; g < ArraydatosEmpleado.length; g++) {
-			empleado = new Empleado(ArraydatosEmpleado[g][0],ArraydatosEmpleado[g][1],ArraydatosEmpleado[g][2],ArraydatosEmpleado[g][3],ArraydatosEmpleado[g][4]);
+			empleado = new Empleado(ArraydatosEmpleado[g][0],ArraydatosEmpleado[g][1],ArraydatosEmpleado[g][2],ArraydatosEmpleado[g][3],ArraydatosEmpleado[g][4],ArraydatosEmpleado[g][5]);
 			masterDatas.add(empleado);
 		}
 		return masterDatas;
@@ -224,6 +225,110 @@ public class Modelo {
 		return masterDatas3;
 	}
 
+	
+	public void BorrarEmpleado(String EMP) throws SQLException {
+
+		try {
+			String[] querys = new String[1];
+			querys[0] = "DELETE FROM proteccioncivil.Empleado WHERE codinterno = '" + EMP + "'";
+
+			PreparedStatement stmt;
+			for (int i = 0; i < querys.length; i++) {
+				stmt = (PreparedStatement) connect.prepareStatement(querys[i]);
+				stmt.executeUpdate();
+			}
+			cargarDatosTablas();
+		} catch (Exception e) {
+			System.out.println("Borrado");
+		}
+	}
+	
+	public void BorrarNotificacion(String NOT) throws SQLException {
+
+		try {
+			String[] querys = new String[1];
+			querys[0] = "DELETE FROM proteccioncivil.Notificacion WHERE codnotificacion = '" + NOT + "'";
+
+			PreparedStatement stmt;
+			for (int i = 0; i < querys.length; i++) {
+				stmt = (PreparedStatement) connect.prepareStatement(querys[i]);
+				stmt.executeUpdate();
+			}
+			cargarDatosTablas();
+		} catch (Exception e) {
+			System.out.println("Borrado");
+		}
+	}
+
+	public void BorrarLugar(String LUG) throws SQLException {
+
+		try {
+			String[] querys = new String[1];
+			querys[0] = "DELETE FROM proteccioncivil.Instalacion WHERE codparque = '" + LUG + "'";
+
+			PreparedStatement stmt;
+			for (int i = 0; i < querys.length; i++) {
+				stmt = (PreparedStatement) connect.prepareStatement(querys[i]);
+				stmt.executeUpdate();
+			}
+			cargarDatosTablas();
+		} catch (Exception e) {
+			System.out.println("Borrado");
+		}
+	}	
+	
+	public void BorrarTodoLugar() {
+
+		try {
+			String[] querys = new String[1];
+			querys[0] = "DELETE FROM proteccioncivil.Instalacion";
+
+			PreparedStatement stmt;
+			for (int i = 0; i < querys.length; i++) {
+				stmt = (PreparedStatement) connect.prepareStatement(querys[i]);
+				stmt.executeUpdate();
+			}
+			cargarDatosTablas();
+		} catch (Exception e) {
+			System.out.println("Borrado");
+		}
+	}
+	
+	public void BorrarTodoNotificacion() {
+
+		try {
+			String[] querys = new String[1];
+			querys[0] = "DELETE FROM proteccioncivil.Notificacion";
+
+			PreparedStatement stmt;
+			for (int i = 0; i < querys.length; i++) {
+				stmt = (PreparedStatement) connect.prepareStatement(querys[i]);
+				stmt.executeUpdate();
+			}
+			cargarDatosTablas();
+		} catch (Exception e) {
+			System.out.println("Borrado");
+		}
+	}
+
+	public void BorrarTodoEmpleado() {
+
+		try {
+			String[] querys = new String[1];
+			querys[0] = "DELETE FROM proteccioncivil.Empleado";
+
+			PreparedStatement stmt;
+			for (int i = 0; i < querys.length; i++) {
+				stmt = (PreparedStatement) connect.prepareStatement(querys[i]);
+				stmt.executeUpdate();
+			}
+			cargarDatosTablas();
+		} catch (Exception e) {
+			System.out.println("Borrado");
+		}
+	}
+	
+	
 	public void cargarDatosTablas(){
 		DataInsta();
 		DataEmpl();
