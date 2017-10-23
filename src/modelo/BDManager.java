@@ -25,6 +25,7 @@ public abstract class BDManager implements AccesoDatos {
 		     String codParque;
 
 		     PreparedStatement ps = null;
+		     PreparedStatement ps2 = null;
 		     Connection con = null;
 		     ResultSet rs = null;
 
@@ -38,20 +39,24 @@ public abstract class BDManager implements AccesoDatos {
 		        con = DriverManager.getConnection(connurl, username, pwd);
 		String line = null;
 		while((line=br.readLine()) != null){
-		String tmp[]=line.split("|");
+		String tmp[]=line.split("\\+");
 		codInterno=tmp[0];
 		dni=tmp[1];
 		nombre=tmp[2];
 		apellido=tmp[3];
 		fecha=tmp[4];
-		codParque=tmp[4];
+		codParque=tmp[5];
 
-		    System.out.println(codInterno + "\t" + nombre + "\t" +apellido+ "\t" +fecha+ "\t" +codParque);
-		    String sql = "INSERT INTO empleado (codinterno,dni,nombre,apellido,fechanacimiento,codParK) values ('" + codInterno + "','" + dni + "','1','" + nombre+ "','" + apellido + "','" + fecha+ "','" + codParque + "')";
-
+		    System.out.println(codInterno + "\t" + dni + "\t" + nombre + "\t" +apellido+ "\t" +fecha+ "\t" +codParque);
+		    
+		    String sql = " INSERT INTO instalacion (codparque) values ('" + codParque + "')";
 		    ps = (PreparedStatement) con.prepareStatement(sql);
-
-		        ps.executeUpdate();
+		    ps.executeUpdate();
+		    String sql1 = " INSERT INTO empleado (codinterno,dni,nombre,apellido,fechanaciemiento,codParK) values ('" + dni + "','" + nombre+ "','" + apellido + "','" + fecha+ "','" + codParque + "')";
+		    ps2 = (PreparedStatement) con.prepareStatement(sql1);
+		    ps2.executeUpdate();
+		    
+		    
 
 
 		}
@@ -60,6 +65,7 @@ public abstract class BDManager implements AccesoDatos {
 		 br.close();
 		 con.close();
 		            ps.close();
+		            ps2.close();
 
 
 		 }   catch(IOException e){
@@ -87,7 +93,3 @@ public abstract class BDManager implements AccesoDatos {
 		}
 		
 	}
-
-
-
-

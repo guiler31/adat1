@@ -29,7 +29,6 @@
                         </TableView>
                         <Button fx:id="lugarNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevoLugar" text="Nuevo" />
                         <Button fx:id="lugarBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarLugar" text="Borrar" textFill="#e70404" />
-                        <Button fx:id="lugarMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modLugar" text="Modificar" />
                         <Button fx:id="refLugar" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="" />
                         <Button fx:id="lugarBorrarTodo" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarTodoLugar" text="Borrar Todo" textFill="#e70404" />
                      </children>
@@ -52,7 +51,6 @@
                         <TextField fx:id="notificacionFilterField" layoutX="94.0" layoutY="11.0" />
                         <Button fx:id="notificacionNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevaNotificacion" text="Nuevo" />
                         <Button fx:id="notificacionBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarNotificacion" text="Borrar" textFill="#e70404" />
-                        <Button fx:id="notificacionMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modNotificacion" text="Modificar" />
                         <Button fx:id="refNotificacion" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="" />
                         <Button fx:id="notificacionBorrarTodo" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarTodoNotificacion" text="Borrar Todo" textFill="#e70404" />
                      </children>
@@ -77,7 +75,6 @@
                         <TextField fx:id="empleadosFilterField" layoutX="94.0" layoutY="11.0" />
                         <Button fx:id="empleadosNuevo" layoutX="490.0" layoutY="11.0" mnemonicParsing="false" onAction="#nuevoEmpleado" text="Nuevo" />
                         <Button fx:id="empleadosBorrar" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#borrarEmpleado" text="Borrar" textFill="#e70404" />
-                        <Button fx:id="empleadosMod" layoutX="320.0" layoutY="11.0" mnemonicParsing="false" onAction="#modEmpleado" text="Modificar" />
                         <Button fx:id="refEmpleado" layoutX="684.0" layoutY="12.0" mnemonicParsing="false" onAction="#refresh" text="" />
                         <Button fx:id="empleadoBorrarTodo" layoutX="570.0" layoutY="12.0" mnemonicParsing="false" onAction="#borrarTodoEmpleado" text="Borrar Todo" textFill="#e70404" />
                      </children>
