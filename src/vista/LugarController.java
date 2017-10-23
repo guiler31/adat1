@@ -29,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import modelo.BDManager;
 import modelo.Empleado;
 import modelo.Lugar;
 import modelo.Modelo;
@@ -41,6 +42,7 @@ public class LugarController implements Initializable {
 	private ObservableList<Empleado> masterData = FXCollections.observableArrayList();
 	private ObservableList<Lugar> masterData3 = FXCollections.observableArrayList();
 	private ObservableList<Notificacion> masterData2 = FXCollections.observableArrayList();
+	private BDManager fichero;
 
 
 	 
@@ -124,6 +126,12 @@ public class LugarController implements Initializable {
 	private Button empleadoBorrarTodo;
 	
 	private void estilos() {
+		try {
+			fichero.main(null);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Image clos = new Image(getClass().getResourceAsStream("refresh.png"));
 		refLugar.setGraphic(new ImageView(clos));
 		refNotificacion.setGraphic(new ImageView(clos));
