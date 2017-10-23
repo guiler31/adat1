@@ -17,15 +17,13 @@ public abstract class BDManager implements AccesoDatos {
 
 		public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-		     String codInterno;
-		     String dni;
-		     String nombre;
-		     String apellido;
-		     String fecha;
-		     String codParque;
+		     String codNoti;
+		     String direccion;
+		     String urgencia;
+		     String tipo;
+
 
 		     PreparedStatement ps = null;
-		     PreparedStatement ps2 = null;
 		     Connection con = null;
 		     ResultSet rs = null;
 
@@ -40,23 +38,18 @@ public abstract class BDManager implements AccesoDatos {
 		String line = null;
 		while((line=br.readLine()) != null){
 		String tmp[]=line.split("\\+");
-		codInterno=tmp[0];
-		dni=tmp[1];
-		nombre=tmp[2];
-		apellido=tmp[3];
-		fecha=tmp[4];
-		codParque=tmp[5];
+		codNoti=tmp[0];
+		direccion=tmp[1];
+		urgencia=tmp[2];
+		tipo=tmp[3];
+		
 
-		    System.out.println(codInterno + "\t" + dni + "\t" + nombre + "\t" +apellido+ "\t" +fecha+ "\t" +codParque);
-		    
-		    String sql = " INSERT INTO instalacion (codparque) values ('" + codParque + "')";
+		    System.out.println(codNoti + "\t" + direccion + "\t" +urgencia+ "\t" +tipo);
+		    String sql = " INSERT INTO notificacion (direccion,urgencia,tipo) values ('" + direccion + "','" + urgencia + "','" + tipo + "')";
+
 		    ps = (PreparedStatement) con.prepareStatement(sql);
-		    ps.executeUpdate();
-		    String sql1 = " INSERT INTO empleado (codinterno,dni,nombre,apellido,fechanaciemiento,codParK) values ('" + dni + "','" + nombre+ "','" + apellido + "','" + fecha+ "','" + codParque + "')";
-		    ps2 = (PreparedStatement) con.prepareStatement(sql1);
-		    ps2.executeUpdate();
-		    
-		    
+
+		        ps.executeUpdate();
 
 
 		}
@@ -65,7 +58,6 @@ public abstract class BDManager implements AccesoDatos {
 		 br.close();
 		 con.close();
 		            ps.close();
-		            ps2.close();
 
 
 		 }   catch(IOException e){
