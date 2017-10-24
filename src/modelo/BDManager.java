@@ -44,7 +44,7 @@ public abstract class BDManager implements AccesoDatos {
 		tipo=tmp[3];
 		
 
-		    System.out.println(codNoti + "\t" + direccion + "\t" +urgencia+ "\t" +tipo);
+//		    System.out.println(codNoti + "\t" + direccion + "\t" +urgencia+ "\t" +tipo);
 		    String sql = " INSERT INTO notificacion (direccion,urgencia,tipo) values ('" + direccion + "','" + urgencia + "','" + tipo + "')";
 
 		    ps = (PreparedStatement) con.prepareStatement(sql);
