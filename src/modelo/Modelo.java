@@ -201,7 +201,7 @@ public class Modelo {
 	public  ObservableList<Empleado> getDatosEmpleado() {
 		masterDatas=FXCollections.observableArrayList();
 		for (int g = 0; g < ArraydatosEmpleado.length; g++) {
-			empleado = new Empleado(ArraydatosEmpleado[g][0],ArraydatosEmpleado[g][1],ArraydatosEmpleado[g][2],ArraydatosEmpleado[g][3],ArraydatosEmpleado[g][4],ArraydatosEmpleado[g][5]);
+			empleado = new Empleado(Integer.parseInt(ArraydatosEmpleado[g][0]),ArraydatosEmpleado[g][1],ArraydatosEmpleado[g][2],ArraydatosEmpleado[g][3],ArraydatosEmpleado[g][4],Integer.parseInt(ArraydatosEmpleado[g][5]));
 			masterDatas.add(empleado);
 		}
 		return masterDatas;
@@ -210,7 +210,7 @@ public class Modelo {
 	public  ObservableList<Notificacion> getDatosNotificacion() {
 		masterDatas2=FXCollections.observableArrayList();
 		for (int g = 0; g < ArraydatosNotificacion.length; g++) {
-			notificacion = new Notificacion(ArraydatosNotificacion[g][0],ArraydatosNotificacion[g][1],ArraydatosNotificacion[g][2],ArraydatosNotificacion[g][3]);
+			notificacion = new Notificacion(Integer.parseInt(ArraydatosNotificacion[g][0]),ArraydatosNotificacion[g][1],ArraydatosNotificacion[g][2],ArraydatosNotificacion[g][3]);
 			masterDatas2.add(notificacion);
 		}
 		return masterDatas2;
@@ -219,7 +219,7 @@ public class Modelo {
 	public  ObservableList<Lugar> getDatosLugar() {
 		masterDatas3=FXCollections.observableArrayList();
 		for (int g = 0; g < ArraydatosLugar.length; g++) {
-			lugar = new Lugar(ArraydatosLugar[g][0],ArraydatosLugar[g][1],ArraydatosLugar[g][2],ArraydatosLugar[g][3]);
+			lugar = new Lugar(Integer.parseInt(ArraydatosLugar[g][0]),ArraydatosLugar[g][1],ArraydatosLugar[g][2],ArraydatosLugar[g][3]);
 			masterDatas3.add(lugar);
 		}
 		return masterDatas3;

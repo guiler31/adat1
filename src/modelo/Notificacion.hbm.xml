@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="modelo.Notificacion" table="notificacion">
+		<id name="codNotificacion" type="int">
+			<column name="codnotificacion" />
+			<generator class="increment" />
+		</id>
+
+		<property name="direccion" type="string">
+			<column name="direccion" length="45" not-null="true" />
+		</property>
+		
+		<property name="urgencia" type="int">
+			<column name="urgencia" length="11" not-null="false" />
+		</property>
+		
+		<property name="tipo" type="string">
+			<column name="tipo" length="45" not-null="true" />
+		</property>
+		
+	</class>
+
+</hibernate-mapping>

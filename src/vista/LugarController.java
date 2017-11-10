@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,7 +91,6 @@ public class LugarController implements Initializable {
 	private Button lugarBorrar;
 	@FXML
 	private Button lugarMod;
-	
 	@FXML
 	private TextField notificacionFilterField;
 	@FXML
@@ -213,7 +213,7 @@ public class LugarController implements Initializable {
 		int inde= empleadosTable.getSelectionModel().getSelectedIndex();
 		Empleado em = empleadosTable.getSelectionModel().getSelectedItem();
 		masterData.remove(inde);
-		String EM= em.codInternoProperty().get();
+		String EM= String.valueOf(em.getCodInterno());
 		try {
 			database.BorrarEmpleado(EM);
 		} catch (SQLException e) {
@@ -258,7 +258,7 @@ public class LugarController implements Initializable {
 		int inde= lugarTable.getSelectionModel().getSelectedIndex();
 		Lugar em = lugarTable.getSelectionModel().getSelectedItem();
 		masterData3.remove(inde);
-		String EM= em.codParqueProperty().get();
+		String EM= String.valueOf(em.getCodParque());
 		try {
 			database.BorrarLugar(EM);
 		} catch (SQLException e) {
@@ -280,7 +280,7 @@ public class LugarController implements Initializable {
 		int inde= notificacionTable.getSelectionModel().getSelectedIndex();
 		Notificacion em = notificacionTable.getSelectionModel().getSelectedItem();
 		masterData2.remove(inde);
-		String EM= em.codNotificacionProperty().get();
+		String EM= String.valueOf(em.getCodNotificacion());
 		try {
 			database.BorrarNotificacion(EM);
 		} catch (SQLException e) {
@@ -295,10 +295,10 @@ public class LugarController implements Initializable {
 
 		masterData3 = database.getDatosLugar();
 		
-		lugarCodigo.setCellValueFactory(cellData -> cellData.getValue().codParqueProperty());
-		lugarTlf.setCellValueFactory(cellData -> cellData.getValue().telefonoProperty());
-		lugarNombre.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
-		lugarDireccion.setCellValueFactory(cellData -> cellData.getValue().direccionProperty());
+		lugarCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCodParque())));
+		lugarTlf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
+		lugarNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+		lugarDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDireccion()));
 		
 		FilteredList<Lugar> filteredData3 = new FilteredList<>(masterData3, p -> true);
 		lugarFilterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -311,7 +311,7 @@ public class LugarController implements Initializable {
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = newValue.toLowerCase();
 				
-				if (person3.getCodParque().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				if (String.valueOf(person3.getCodParque()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches first name.
 				} else if (person3.getDireccion().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
@@ -336,10 +336,10 @@ public class LugarController implements Initializable {
 
 		masterData2 = database.getDatosNotificacion();
 
-		notificacionCod.setCellValueFactory(cellData -> cellData.getValue().codNotificacionProperty());
-		notificacionUrgencia.setCellValueFactory(cellData -> cellData.getValue().urgenciaProperty());
-		notificacionTipo.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
-		notificacionDireccion.setCellValueFactory(cellData -> cellData.getValue().direccionProperty());
+		notificacionCod.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCodNotificacion())));
+		notificacionUrgencia.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUrgencia()));
+		notificacionTipo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipo()));
+		notificacionDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDireccion()));
 		
 		FilteredList<Notificacion> filteredData2 = new FilteredList<>(masterData2, p -> true);
 
@@ -353,7 +353,7 @@ public class LugarController implements Initializable {
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = newValue.toLowerCase();
 				
-				if (person2.getCodNotificacion().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				if (String.valueOf(person2.getCodNotificacion()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches first name.
 				} else if (person2.getDireccion().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
@@ -376,14 +376,13 @@ public class LugarController implements Initializable {
 	private void cargarEmpleado() {
 		database = new Modelo();
 		masterData = database.getDatosEmpleado();
-
 		// 0. Initialize the columns.
-		empleadosDni.setCellValueFactory(cellData -> cellData.getValue().dniProperty());
-		empleadosNombre.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
-		empleadosFechaNacimiento.setCellValueFactory(cellData -> cellData.getValue().fechaNacimientoProperty());
-		empleadosId.setCellValueFactory(cellData -> cellData.getValue().codInternoProperty());
-		empleadosApe.setCellValueFactory(cellData -> cellData.getValue().apellidosProperty());
-		empleadosCodParque.setCellValueFactory(cellData -> cellData.getValue().codParqueProperty());
+		empleadosDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
+		empleadosNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+		empleadosFechaNacimiento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getApellidos()));
+		empleadosId.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCodInterno())));
+		empleadosApe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFechaNacimiento()));
+		empleadosCodParque.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCodParque())));
 
 		
 		// 1. Wrap the ObservableList in a FilteredList (initially display all data).
@@ -400,17 +399,17 @@ public class LugarController implements Initializable {
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = newValue.toLowerCase();
 				
-				if (person.getCodInterno().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				if (String.valueOf(person.getCodInterno()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches first name.
 				} else if (person.getDni().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				} else if (person.getNombre().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches nota.
-				}else if (person.getfechaNacimiento().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-					return true;
+				}else if (person.getFechaNacimiento().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; 
 				}else if (person.getApellidos().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
-				}else if (person.getCodParque().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+				}else if (String.valueOf(person.getCodParque()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				}
 				return false; // Does not match.

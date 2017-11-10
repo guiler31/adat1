@@ -65,8 +65,8 @@
                            <columns>
                               <TableColumn fx:id="empleadosDni" editable="false" prefWidth="88.0" text="DNI" />
                               <TableColumn fx:id="empleadosNombre" editable="false" prefWidth="173.11922454833984" text="Nombre" />
-                              <TableColumn fx:id="empleadosApe" prefWidth="71.0" text="Apellidos" />
-                              <TableColumn fx:id="empleadosFechaNacimiento" editable="false" minWidth="0.0" prefWidth="227.0" text="Fecha Nacimiento" />
+                              <TableColumn fx:id="empleadosApe" prefWidth="167.0" text="Apellido" />
+                              <TableColumn fx:id="empleadosFechaNacimiento" editable="false" minWidth="0.0" prefWidth="131.0" text="Fecha Nacimiento" />
                               <TableColumn fx:id="empleadosId" editable="false" minWidth="0.0" prefWidth="118.0" text="Cod.Interno" />
                               <TableColumn fx:id="empleadosCodParque" prefWidth="85.0" text="CodParque" />
                            </columns>
