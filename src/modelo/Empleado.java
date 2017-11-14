@@ -13,7 +13,6 @@ public class Empleado {
 	
 	public Empleado(int codInterno, String dni, String nombre,  String apellidos,String fechaNacimiento,
 			int codParque) {
-		super();
 		this.codInterno = codInterno;
 		this.dni = dni;
 		this.nombre = nombre;

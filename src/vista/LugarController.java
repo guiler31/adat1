@@ -126,12 +126,7 @@ public class LugarController implements Initializable {
 	private Button empleadoBorrarTodo;
 	
 	private void estilos() {
-		try {
-			fichero.main(null);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		Image clos = new Image(getClass().getResourceAsStream("refresh.png"));
 		refLugar.setGraphic(new ImageView(clos));
 		refNotificacion.setGraphic(new ImageView(clos));
