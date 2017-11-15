@@ -40,7 +40,6 @@ import modelo.Notificacion;
 
 public class LugarController implements Initializable {
 	private Main programaPrincipal;
-	private Modelo database;
 	private Connection connection;
 	private ObservableList<Empleado> masterData = FXCollections.observableArrayList();
 	private ObservableList<Lugar> masterData3 = FXCollections.observableArrayList();
@@ -207,39 +206,34 @@ public class LugarController implements Initializable {
 	
 	@FXML
 	private void borrarEmpleado() {
-		database= new Modelo();
+		hiber=new AccesoHibernate();
 		int inde= empleadosTable.getSelectionModel().getSelectedIndex();
 		Empleado em = empleadosTable.getSelectionModel().getSelectedItem();
 		masterData.remove(inde);
 		String EM= String.valueOf(em.getCodInterno());
-		try {
-			database.BorrarEmpleado(EM);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		hiber.borrarEmpleado(EM);
 		
 	}
 	
 	@FXML
 	private void borrarTodoEmpleado() {
-		database= new Modelo();
+		hiber=new AccesoHibernate();
 		masterData.clear();
-		database.BorrarTodoEmpleado();
+		hiber.borrarEmpleadoTodo();
 	}
 	
 	@FXML
 	private void borrarTodoLugar() {
-		database= new Modelo();
+		hiber=new AccesoHibernate();
 		masterData3.clear();
-		database.BorrarTodoLugar();
+		hiber.borrarLugarTodo();
 	}
 	
 	@FXML
 	private void borrarTodoNotificacion() {
-		database= new Modelo();
+		hiber=new AccesoHibernate();
 		masterData2.clear();
-		database.BorrarTodoNotificacion();
+		hiber.borrarNotificacionTodo();
 	}
 	
 
@@ -252,17 +246,12 @@ public class LugarController implements Initializable {
 	}
 	@FXML
 	private void borrarLugar() {
-		database= new Modelo();
+		hiber=new AccesoHibernate();
 		int inde= lugarTable.getSelectionModel().getSelectedIndex();
 		Lugar em = lugarTable.getSelectionModel().getSelectedItem();
 		masterData3.remove(inde);
 		String EM= String.valueOf(em.getCodParque());
-		try {
-			database.BorrarLugar(EM);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		hiber.borrarLugar(EM);
 	}
 
 	@FXML
@@ -274,22 +263,18 @@ public class LugarController implements Initializable {
 	}
 	@FXML
 	private void borrarNotificacion() {
-		database= new Modelo();
+		hiber=new AccesoHibernate();
 		int inde= notificacionTable.getSelectionModel().getSelectedIndex();
 		Notificacion em = notificacionTable.getSelectionModel().getSelectedItem();
 		masterData2.remove(inde);
 		String EM= String.valueOf(em.getCodNotificacion());
-		try {
-			database.BorrarNotificacion(EM);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		hiber.borrarNotificacion(EM);
 	}
+	
+	
 	
 	@FXML
 	private void cargarLugar() {
-		database = new Modelo();
 		hiber=new AccesoHibernate();
 		for (int i = 0; i < hiber.obtenerLugar().size(); i++) {
 			masterData3.add((Lugar) hiber.obtenerLugar().values().toArray()[i]);
@@ -332,7 +317,6 @@ public class LugarController implements Initializable {
 	
 	@FXML
 	private void cargarNotificacion() {
-		database = new Modelo();
 
 		hiber=new AccesoHibernate();
 		for (int i = 0; i < hiber.obtenerNotificacion().size(); i++) {
@@ -377,7 +361,6 @@ public class LugarController implements Initializable {
 	
 	@FXML
 	private void cargarEmpleado() {
-		database = new Modelo();
 		hiber=new AccesoHibernate();
 		for (int i = 0; i < hiber.obtenerEmpleado().size(); i++) {
 			masterData.add((Empleado) hiber.obtenerEmpleado().values().toArray()[i]);

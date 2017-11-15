@@ -136,4 +136,46 @@ public class AccesoHibernate {
 		
 		session.getTransaction().commit();
 	}
+	
+	public void borrarLugar(String nombre) {
+		session.beginTransaction();
+        Query q = session.createQuery("delete from Lugar where codParque = '"+nombre+"'");
+        q.executeUpdate();
+        session.getTransaction().commit();
+    }
+	
+	public void borrarNotificacion(String nombre) {
+		session.beginTransaction();
+        Query q = session.createQuery("delete from Notificacion where codNotificacion = '"+nombre+"'");
+        q.executeUpdate();
+        session.getTransaction().commit();
+    }
+	
+	public void borrarEmpleado(String nombre) {
+		session.beginTransaction();
+        Query q = session.createQuery("delete from Empleado where codInterno = '"+nombre+"'");
+        q.executeUpdate();
+        session.getTransaction().commit();
+    }
+	
+	public void borrarEmpleadoTodo() {
+		session.beginTransaction();
+        Query q = session.createQuery("delete from Empleado");
+        q.executeUpdate();
+        session.getTransaction().commit();
+    }
+	
+	public void borrarLugarTodo() {
+		session.beginTransaction();
+        Query q = session.createQuery("delete from Lugar");
+        q.executeUpdate();
+        session.getTransaction().commit();
+    }
+	
+	public void borrarNotificacionTodo() {
+		session.beginTransaction();
+        Query q = session.createQuery("delete from Notificacion");
+        q.executeUpdate();
+        session.getTransaction().commit();
+    }
 }
