@@ -276,6 +276,7 @@ public class LugarController implements Initializable {
 	@FXML
 	private void cargarLugar() {
 		hiber=new AccesoHibernate();
+		masterData3.clear();
 		for (int i = 0; i < hiber.obtenerLugar().size(); i++) {
 			masterData3.add((Lugar) hiber.obtenerLugar().values().toArray()[i]);
 		}
@@ -319,6 +320,7 @@ public class LugarController implements Initializable {
 	private void cargarNotificacion() {
 
 		hiber=new AccesoHibernate();
+		masterData2.clear();
 		for (int i = 0; i < hiber.obtenerNotificacion().size(); i++) {
 			masterData2.add((Notificacion) hiber.obtenerNotificacion().values().toArray()[i]);
 		}
@@ -362,6 +364,7 @@ public class LugarController implements Initializable {
 	@FXML
 	private void cargarEmpleado() {
 		hiber=new AccesoHibernate();
+		masterData.clear();
 		for (int i = 0; i < hiber.obtenerEmpleado().size(); i++) {
 			masterData.add((Empleado) hiber.obtenerEmpleado().values().toArray()[i]);
 		}
