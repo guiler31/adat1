@@ -2,7 +2,6 @@ package vista;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -14,10 +13,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.AccesoHibernate;
+import modelo.Empleado;
+import modelo.Lugar;
 import modelo.Modelo;
 
 public class newEmpleadoController implements Initializable {
 	private Modelo empleado;
+	private AccesoHibernate hib;
+	private Empleado emp;
 	
 	@FXML
 	private Button empleadosSave;
@@ -42,9 +46,9 @@ public class newEmpleadoController implements Initializable {
 	
 	@FXML
 	private void saveEmpleado(ActionEvent sv) throws ClassNotFoundException, SQLException {
-		empleado=new Modelo();		
 		String fecha = fechaNac.getValue().toString();
-		empleado.registrarEmpleado(txtfDNI.getText(), txtfNombre.getText(), txtfApellidos.getText(), fecha, txtfCodPark.getText() );
+		hib=new AccesoHibernate();
+		hib.guardarEmpleados(new Empleado(0,txtfDNI.getText(), txtfNombre.getText(), txtfApellidos.getText(), fecha, Integer.parseInt(txtfCodPark.getText())));
 		Stage stage = (Stage) empleadosCancel.getScene().getWindow();
 	    stage.close();
 	    

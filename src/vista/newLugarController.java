@@ -51,7 +51,7 @@ public class newLugarController implements Initializable {
 		 
 		
 		hib=new AccesoHibernate();
-		hib.guardarLugar(new Lugar((Integer) null,txtfNombre.getText(), txtfTlf.getText(), txtfDireccion.getText()));
+		hib.guardarLugar(new Lugar(0,txtfNombre.getText(), txtfTlf.getText(), txtfDireccion.getText()));
 		Stage stage = (Stage) lugarCancel.getScene().getWindow();
 	    stage.close();
 	    

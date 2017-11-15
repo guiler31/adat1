@@ -3,6 +3,7 @@ package modelo;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -83,16 +84,56 @@ public class AccesoHibernate {
 	}
 
 	public void guardarEmpleados(Empleado empleados) {
-		session.save(empleados);
+		session.beginTransaction();
+		Query q = session.createQuery("select max(codInterno) from Empleado");
+		List results = q.list();
+		int id =(int) results.iterator().next()+1;
+		
+		Empleado lug= new Empleado(id,empleados.getDni(),empleados.getNombre(), empleados.getApellidos(), empleados.getFechaNacimiento(),empleados.getCodParque());
+		HashMap<Integer, Empleado> lugar = new HashMap<Integer, Empleado>();
+		lugar.put(id, lug);
+		for (Entry<Integer, Empleado> entry : lugar.entrySet()) {
+			session.save(entry.getValue());
+
+		}
+		
+		session.getTransaction().commit();
+		
+		
 	}
 
 	public void guardarLugar(Lugar ar) {
 		
-		session.save(ar);
+		session.beginTransaction();
+		Query q = session.createQuery("select max(codParque) from Lugar");
+		List results = q.list();
+		int id =(int) results.iterator().next()+1;
+		
+		Lugar lug= new Lugar(id,ar.getNombre(),ar.getTelefono(),ar.getDireccion());
+		HashMap<Integer, Lugar> lugar = new HashMap<Integer, Lugar>();
+		lugar.put(id, lug);
+		for (Entry<Integer, Lugar> entry : lugar.entrySet()) {
+			session.save(entry.getValue());
+
+		}
+		
+		session.getTransaction().commit();
 	}
 
 	public void guardarNotificacion(Notificacion notificacion) {
-		session.save(notificacion);
+		session.beginTransaction();
+		Query q = session.createQuery("select max(codNotificacion) from Notificacion");
+		List results = q.list();
+		int id =(int) results.iterator().next()+1;
+		
+		Notificacion lug= new Notificacion(id,notificacion.getDireccion(),notificacion.getUrgencia(),notificacion.getTipo());
+		HashMap<Integer, Notificacion> lugar = new HashMap<Integer, Notificacion>();
+		lugar.put(id, lug);
+		for (Entry<Integer, Notificacion> entry : lugar.entrySet()) {
+			session.save(entry.getValue());
 
+		}
+		
+		session.getTransaction().commit();
 	}
 }

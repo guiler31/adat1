@@ -4,7 +4,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,10 +13,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.AccesoHibernate;
 import modelo.Modelo;
+import modelo.Notificacion;
 
 public class newNotificacionController implements Initializable{
 	private Modelo notificacion;
+	private AccesoHibernate hib;
+	private Notificacion not;
 	
 	@FXML
 	private Button notificacionSave;
@@ -44,8 +47,8 @@ public class newNotificacionController implements Initializable{
 	
 	@FXML
 	private void saveNotificacion(ActionEvent sv) throws ClassNotFoundException, SQLException {
-		notificacion=new Modelo();		
-		notificacion.registrarNotificacion(txtfDireccion.getText(), urgencia.getSelectionModel().getSelectedItem(), txtfTipo.getText());
+		hib=new AccesoHibernate();
+		hib.guardarNotificacion(new Notificacion(0,txtfDireccion.getText(), urgencia.getSelectionModel().getSelectedItem(), txtfTipo.getText()));
 		Stage stage = (Stage) notificacionCancel.getScene().getWindow();
 	    stage.close();
 	    
