@@ -3,6 +3,7 @@ package vista;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -15,10 +16,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.AccesoHibernate;
+import modelo.Lugar;
 import modelo.Modelo;
 
 public class newLugarController implements Initializable {
 	private Modelo lugar;
+	private AccesoHibernate hib;
+	private Lugar lug;
 	
 	@FXML
 	private Button lugarSave;
@@ -43,8 +48,10 @@ public class newLugarController implements Initializable {
 	
 	@FXML
 	private void saveLugar(ActionEvent sv) throws ClassNotFoundException, SQLException {
-		lugar=new Modelo();		
-		lugar.registrarLugar(txtfNombre.getText(), txtfTlf.getText(), txtfDireccion.getText());
+		 
+		
+		hib=new AccesoHibernate();
+		hib.guardarLugar(new Lugar((Integer) null,txtfNombre.getText(), txtfTlf.getText(), txtfDireccion.getText()));
 		Stage stage = (Stage) lugarCancel.getScene().getWindow();
 	    stage.close();
 	    

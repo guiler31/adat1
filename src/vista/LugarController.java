@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -30,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import modelo.AccesoHibernate;
 import modelo.BDManager;
 import modelo.Empleado;
 import modelo.Lugar;
@@ -44,6 +46,7 @@ public class LugarController implements Initializable {
 	private ObservableList<Lugar> masterData3 = FXCollections.observableArrayList();
 	private ObservableList<Notificacion> masterData2 = FXCollections.observableArrayList();
 	private BDManager fichero;
+	private AccesoHibernate hiber;
 
 
 	 
@@ -287,9 +290,11 @@ public class LugarController implements Initializable {
 	@FXML
 	private void cargarLugar() {
 		database = new Modelo();
+		hiber=new AccesoHibernate();
+		for (int i = 0; i < hiber.obtenerLugar().size(); i++) {
+			masterData3.add((Lugar) hiber.obtenerLugar().values().toArray()[i]);
+		}
 
-		masterData3 = database.getDatosLugar();
-		
 		lugarCodigo.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCodParque())));
 		lugarTlf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
 		lugarNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
@@ -329,7 +334,10 @@ public class LugarController implements Initializable {
 	private void cargarNotificacion() {
 		database = new Modelo();
 
-		masterData2 = database.getDatosNotificacion();
+		hiber=new AccesoHibernate();
+		for (int i = 0; i < hiber.obtenerNotificacion().size(); i++) {
+			masterData2.add((Notificacion) hiber.obtenerNotificacion().values().toArray()[i]);
+		}
 
 		notificacionCod.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCodNotificacion())));
 		notificacionUrgencia.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUrgencia()));
@@ -370,7 +378,10 @@ public class LugarController implements Initializable {
 	@FXML
 	private void cargarEmpleado() {
 		database = new Modelo();
-		masterData = database.getDatosEmpleado();
+		hiber=new AccesoHibernate();
+		for (int i = 0; i < hiber.obtenerEmpleado().size(); i++) {
+			masterData.add((Empleado) hiber.obtenerEmpleado().values().toArray()[i]);
+		}
 		// 0. Initialize the columns.
 		empleadosDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
 		empleadosNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));

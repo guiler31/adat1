@@ -4,15 +4,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Empleado {
-	private final int codInterno;
-	private final String dni;
-	private final String nombre;
-	private final String fechaNacimiento;
-	private final String apellidos;
-	private final int codParque;
+	private int codInterno;
+	private String dni;
+	private String nombre;
+	private String fechaNacimiento;
+	private String apellidos;
+	private int codParque;
 	
+	public Empleado(){
+		
+	}
 	public Empleado(int codInterno, String dni, String nombre,  String apellidos,String fechaNacimiento,
 			int codParque) {
+		super();
 		this.codInterno = codInterno;
 		this.dni = dni;
 		this.nombre = nombre;
@@ -23,6 +27,30 @@ public class Empleado {
 
 	public int getCodInterno() {
 		return codInterno;
+	}
+
+	public void setCodInterno(int codInterno) {
+		this.codInterno = codInterno;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public void setCodParque(int codParque) {
+		this.codParque = codParque;
 	}
 
 	public String getDni() {

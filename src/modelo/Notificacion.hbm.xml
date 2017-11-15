@@ -14,7 +14,7 @@
 			<column name="direccion" length="45" not-null="true" />
 		</property>
 		
-		<property name="urgencia" type="int">
+		<property name="urgencia" type="string">
 			<column name="urgencia" length="11" not-null="false" />
 		</property>
 		

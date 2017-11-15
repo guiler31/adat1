@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import modelo.Modelo;
 import vista.LugarController;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -38,8 +37,8 @@ public class Main extends Application {
              * A�adidos las llamadas del main al Controlador y del controlador al main ***/
             LugarController controller = loader.getController();
             controller.setProgramaPrincipal(this);
-
             stagePrincipal.show();
+
         } catch (IOException e) {
             //tratar la excepci�n.
         	System.out.println (e.toString());

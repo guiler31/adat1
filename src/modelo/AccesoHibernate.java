@@ -20,25 +20,29 @@ public class AccesoHibernate {
 
 		HibernateUtil util = new HibernateUtil();
 		session = util.getSessionFactory().openSession();
- 
+	}
+
+	public void cargarTodo() {
+		obtenerLugar();
+		obtenerNotificacion();
+		obtenerEmpleado();
+
 	}
 
 	public HashMap<Integer, Empleado> obtenerEmpleado() {
 		Query q = session.createQuery("select dep from Empleado dep");
 		List results = q.list();
 		int clave;
-		HashMap<Integer, Empleado> depositosCreados = null;
+		HashMap<Integer, Empleado> depositosCreados = new HashMap<Integer, Empleado>();
 		Iterator equiposIterator = results.iterator();
 
 		while (equiposIterator.hasNext()) {
 			Empleado team = (Empleado) equiposIterator.next();
-//			team = new Deposito(team.getNombreMoneda(), team.getValor(), team.getCantidad());
-//			clave = team.getValor();
+
 			depositosCreados.put(team.getCodInterno(), team);
-			
+
 		}
 
-		System.out.println("Fin Consulta Deposito");
 		return depositosCreados;
 	}
 
@@ -46,60 +50,49 @@ public class AccesoHibernate {
 		Query q = session.createQuery("select dis from Lugar dis");
 		List results = q.list();
 		String clave;
-		HashMap<Integer, Lugar> dispensadorCreados = null;
+		HashMap<Integer, Lugar> dispensadorCreados = new HashMap<Integer, Lugar>();
 		Iterator equiposIterator = results.iterator();
 
 		while (equiposIterator.hasNext()) {
 			Lugar team = (Lugar) equiposIterator.next();
-//			team = new Dispensador(team.getClave(), team.getNombreProducto(), team.getPrecio(), team.getCantidad());
-//			clave = team.getClave();
+			// team = new Dispensador(team.getClave(), team.getNombreProducto(),
+			// team.getPrecio(), team.getCantidad());
+			// clave = team.getClave();
 			dispensadorCreados.put(team.getCodParque(), team);
 
 		}
-		System.out.println("Fin Consulta Deposito");
 		return dispensadorCreados;
 	}
-	
+
 	public HashMap<Integer, Notificacion> obtenerNotificacion() {
 		Query q = session.createQuery("select dis from Notificacion dis");
 		List results = q.list();
 		String clave;
-		HashMap<Integer, Notificacion> dispensadorCreados = null;
+		HashMap<Integer, Notificacion> dispensadorCreados = new HashMap<Integer, Notificacion>();
 		Iterator equiposIterator = results.iterator();
 
 		while (equiposIterator.hasNext()) {
 			Notificacion team = (Notificacion) equiposIterator.next();
-//			team = new Dispensador(team.getClave(), team.getNombreProducto(), team.getPrecio(), team.getCantidad());
-//			clave = team.getClave();
+			// team = new Dispensador(team.getClave(), team.getNombreProducto(),
+			// team.getPrecio(), team.getCantidad());
+			// clave = team.getClave();
 			dispensadorCreados.put(team.getCodNotificacion(), team);
-			
+
 		}
-		System.out.println("Fin Consulta Deposito"+dispensadorCreados);
 		return dispensadorCreados;
 	}
 
-	public boolean guardarEmpleados(HashMap<Integer, Empleado> empleados) {
-		for (Integer key : empleados.keySet()) {
-			Empleado deposito = (Empleado) empleados.get(key);
-			session.update(deposito);
-		}
-		return true;
+	public void guardarEmpleados(Empleado empleados) {
+		session.save(empleados);
 	}
 
-	public boolean guardarLugares(HashMap<Integer, Lugar> lugares) {
-		for (Integer key : lugares.keySet()) {
-			Lugar dispensador = (Lugar) lugares.get(key);
-			session.update(dispensador);
-		}
-		return true;
-	}
-	
-	public boolean guardarNotificaciones(HashMap<Integer, Notificacion> notificaciones) {
-		for (Integer key : notificaciones.keySet()) {
-			Notificacion dispensador = (Notificacion) notificaciones.get(key);
-			session.update(dispensador);
-		}
-		return true;
+	public void guardarLugar(Lugar ar) {
+		
+		session.save(ar);
 	}
 
+	public void guardarNotificacion(Notificacion notificacion) {
+		session.save(notificacion);
+
+	}
 }

@@ -216,14 +216,14 @@ public class Modelo {
 		return masterDatas2;
 	}
 	
-	public  ObservableList<Lugar> getDatosLugar() {
-		masterDatas3=FXCollections.observableArrayList();
-		for (int g = 0; g < ArraydatosLugar.length; g++) {
-			lugar = new Lugar(Integer.parseInt(ArraydatosLugar[g][0]),ArraydatosLugar[g][1],ArraydatosLugar[g][2],ArraydatosLugar[g][3]);
-			masterDatas3.add(lugar);
-		}
-		return masterDatas3;
-	}
+//	public  ObservableList<Lugar> getDatosLugar() {
+//		masterDatas3=FXCollections.observableArrayList();
+//		for (int g = 0; g < ArraydatosLugar.length; g++) {
+//			lugar = new Lugar(Integer.parseInt(ArraydatosLugar[g][0]),ArraydatosLugar[g][1],ArraydatosLugar[g][2],ArraydatosLugar[g][3]);
+//			masterDatas3.add(lugar);
+//		}
+//		return masterDatas3;
+//	}
 
 	
 	public void BorrarEmpleado(String EMP) throws SQLException {
